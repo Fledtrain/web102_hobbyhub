@@ -9,7 +9,11 @@ const Home = () => {
             .from('posts')
             .select('*')
 
-        console.log(data, error)
+        try {
+            setPosts(data)
+        } catch (error) {
+            console.error(error)
+        }
     }
     useEffect(() => {
         getPosts()
@@ -17,7 +21,15 @@ const Home = () => {
 
     return (
         <>
-            <h1>Home Page</h1>
+            <section>
+                <h1>Home Page</h1>
+                {posts.map(post => (
+                    <div key={post.id}>
+                        <h2>{post.title}</h2>
+                        <p>{post.content}</p>
+                    </div>
+                ))}
+                </section>
         </>
     )
 }

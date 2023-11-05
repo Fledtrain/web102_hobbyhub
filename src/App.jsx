@@ -4,6 +4,7 @@ import Home from './routes/Home'
 import Create from './routes/Create'
 import Post from './routes/Post'
 import Update from './routes/Update'
+import Header from './components/Header'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
