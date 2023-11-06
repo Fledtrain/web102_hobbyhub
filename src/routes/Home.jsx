@@ -34,7 +34,7 @@ const Home = () => {
             <section className="p-[60px]">
                 {posts && posts.map(post => (
                     <section key={post?.id} className="p-[40px] w-96 shadow-xl card card-bordered">
-                            <p>Posted {formattedDate} hours ago </p>
+                            <p>Posted {post.created_at} hours ago </p>
                         <div className="card-body">
                             <h2 className="card-title">{post?.title}</h2>
                             <p className="card">{post?.content}</p>
