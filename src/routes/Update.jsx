@@ -44,6 +44,22 @@ const Update = () => {
 
         }, 2000)
     }
+
+    const deletePost = async (e) => {
+        e.preventDefault()
+
+        await supabase
+            .from('posts')
+            .delete()
+            .eq('postID', params.id)
+
+        setStatus({ isDeleted: true })
+        setTimeout(() => {
+            setStatus({ isDeleted: false })
+
+        }, 2000)
+    }
+
     useEffect(() => {
         getPost()
     }, [])
@@ -86,7 +102,7 @@ const Update = () => {
                             onClick={(e) => { updatePost(e) }}>Save Changes</button>
                         <button
                             className="btn"
-                            onClick={(e) => { }}>Delete Post </button>
+                            onClick={(e) => { deletePost(e) }}>Delete Post </button>
 
                         {status.isUpdated && (
                             <div className="alert alert-success mt-5">
@@ -95,6 +111,15 @@ const Update = () => {
                                 </div>
                             </div>
                         )}
+                        {
+                            status.isDeleted && (
+                                <div className="alert alert-success mt-5">
+                                    <div className="flex-1">
+                                        <label className="label">Post Deleted Successfully!! Click here to go to Home Page</label>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </section>
                 </form>
             </section>
