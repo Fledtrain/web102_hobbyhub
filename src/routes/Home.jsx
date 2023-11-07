@@ -6,7 +6,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
 
     const getPosts = async () => {
-        let { data, error } = await supabase
+        let { data } = await supabase
             .from('posts')
             .select('*')
 
