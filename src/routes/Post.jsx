@@ -25,7 +25,8 @@ const Post = () => {
     /** Function for checking the secretKey
      * @param {number} secretKey 
      */
-    const checkPasskey = async (secretKey) => {
+    const checkPasskey = async (e, secretKey) => {
+        e.preventDefault()
         const { data } = await supabase
             .from('posts')
             .select('*')
@@ -69,16 +70,20 @@ const Post = () => {
                 )}
             </section>
             <section className="flex flex-col">
-                <form className="hero">
-                    <input
-                        type="number"
-                        className="input input-bordered text-ellipsis mt-5 w-[17rem] text-center "
-                        placeholder="Enter Secret Key to edit post"
-                        onChange={(e) => { setSecretkey(Number(e.target.value)) }} />
+                <form>
+                    <div className="hero">
+                        <input
+                            type="number"
+                            className="input input-bordered text-ellipsis mt-5 w-[17rem] text-center  "
+                            placeholder="Enter Secret Key to edit post"
+                            onChange={(e) => { setSecretkey(Number(e.target.value)) }} />
+                    </div>
+                    <div className="hero">
+                        <button className="btn mt-5 w-[20rem]" onClick={(e) => checkPasskey(e, secretKey)}>Enter secretKey</button>
+                    </div>
                 </form>
                 <div className="hero">
                     <div className="">
-                        <button className="btn mt-5 w-[20rem]" onClick={() => checkPasskey(secretKey)}>Enter secretKey</button>
                         {isSecretKey && <p className="alert alert-success uppercase mt-5">You are allowed to Edit</p>}
                         {isNotSecretKey && <p className="alert alert-error uppercase mt-5 font-semibold">secretKey is Wrong</p>}
                     </div>
