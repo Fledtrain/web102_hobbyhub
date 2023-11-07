@@ -13,10 +13,18 @@ const Create = () => {
     const [alert, setAlert] = useState(false)
     const [success, setSuccess] = useState(false)
 
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
 
+        // Remove the fake path from the image
+        const path = form.image.split('\\')
+        const newPath = path[path.length - 1]
+
+        // Check if all fields are filled
         if (!form.title || !form.description || !form.passKey) {
             setAlert(true)
             setLoading(false)
@@ -28,12 +36,17 @@ const Create = () => {
         }
         else {
 
+            const updatedPost = {
+                title: form.title,
+                content: form.description,
+                secretKey: form.passKey,
+                image: newPath
+            }
+
             const createPost = async () => {
                 await supabase
                     .from("posts")
-                    .insert([
-                        { title: form.title, content: form.description, secretKey: form.passKey, image: form.image }
-                    ])
+                    .insert(updatedPost)
             }
 
             await createPost()
@@ -94,7 +107,7 @@ const Create = () => {
                         </label>
                     </div>
                     {loading ?
-                        <loading className="loading"></loading>
+                        <p className="loading"></p>
                         : <button className="btn mt-5 " onClick={handleSubmit}>Create Post</button>}
                     {
                         success &&

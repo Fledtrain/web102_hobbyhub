@@ -59,6 +59,8 @@ const Update = () => {
 
         }, 2000)
     }
+    const imageUrl = `http://127.0.0.1:5173/${post?.image}`;
+
 
     useEffect(() => {
         getPost()
@@ -67,13 +69,15 @@ const Update = () => {
         <>
             <section className="p-[50px]">
                 {post && (
-                    <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
-                        <div className="card-body">
-                            <h2 className="hero text-4xl ">{post?.title}</h2>
-                            <p className="card text-2xl text-ellipsis ">{post?.content}</p>
-                        </div>
-                        <img src={post?.image} alt="Image of Bug by User" />
-                    </section>
+                    <div className="hero">
+                        <section className="p-[120px] w-[55rem] shadow-xl card card-bordered  "  >
+                            <div className="card-body">
+                                <h2 className="hero text-4xl ">{post?.title}</h2>
+                                <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                            </div>
+                            <img src={imageUrl} className="w-[70px]" alt="Image of Bug by User" />
+                        </section>
+                    </div>
                 )}
                 <form className="flex flex-col hero mt-5">
                     <input
