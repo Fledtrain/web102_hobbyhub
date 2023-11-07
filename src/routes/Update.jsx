@@ -5,6 +5,8 @@ import { supabase } from "../client"
 const Update = () => {
     const params = useParams()
     const [post, setPost] = useState(null)
+    const [image, setImage] = useState(null)
+
 
 
     const getPost = async () => {
@@ -29,6 +31,7 @@ const Update = () => {
                     <div className="card-body">
                         <h2 className="card-title">{post?.title}</h2>
                         <p className="card">{post?.content}</p>
+                        <img src={post?.image} alt="Image of Bug by User" />
                     </div>
                 </section>
             )}

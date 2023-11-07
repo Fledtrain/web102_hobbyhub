@@ -57,25 +57,32 @@ const Post = () => {
 
     return (
         <>
-            {post && (
-                <section className="p-[40px] w-96 shadow-xl card card-bordered"  >
-                    <div className="card-body">
-                        <h2 className="card-title">{post?.title}</h2>
-                        <p className="card">{post?.content}</p>
-                    </div>
-                </section>
-            )}
-            <section>
-                <form >
+            <section className="p-[50px] hero">
+
+                {post && (
+                    <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
+                        <div className="card-body">
+                            <h2 className="hero text-4xl ">{post?.title}</h2>
+                            <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                        </div>
+                    </section>
+                )}
+            </section>
+            <section className="flex flex-col">
+                <form className="hero">
                     <input
                         type="number"
-                        className="input input-bordered text-ellipsis"
-                        placeholder="Enter secretKey to edit post"
+                        className="input input-bordered text-ellipsis mt-5 w-[17rem] text-center "
+                        placeholder="Enter Secret Key to edit post"
                         onChange={(e) => { setSecretkey(Number(e.target.value)) }} />
                 </form>
-                <button className="btn mt-5" onClick={() => checkPasskey(secretKey)}>Enter secretKey</button>
-                {isSecretKey && <p className="alert alert-success uppercase mt-5">You are allowed to Edit</p>}
-                {isNotSecretKey && <p className="alert alert-error uppercase mt-5">secretKey is Wrong</p>}
+                <div className="hero">
+                    <div className="">
+                        <button className="btn mt-5 w-[20rem]" onClick={() => checkPasskey(secretKey)}>Enter secretKey</button>
+                        {isSecretKey && <p className="alert alert-success uppercase mt-5">You are allowed to Edit</p>}
+                        {isNotSecretKey && <p className="alert alert-error uppercase mt-5 font-semibold">secretKey is Wrong</p>}
+                    </div>
+                </div>
             </section>
         </>
     )
