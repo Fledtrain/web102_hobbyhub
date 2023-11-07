@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { supabase } from "../client"
 
 const Update = () => {
     const params = useParams()
-    const navigate = useNavigate()
     const [post, setPost] = useState(null)
     const [form, setForm] = useState({
         title: '',
-        description: '',
+        content: '',
+    })
+
+    const [status, setStatus] = useState({
+        isUpdated: false,
+        isDeleted: false,
     })
 
 
@@ -20,11 +24,29 @@ const Update = () => {
         setPost(data[0])
     }
 
+
+    const updatePost = async (e) => {
+        e.preventDefault()
+
+        const updatedPost = {
+            title: form.title === '' ? post.title : form.title,
+            content: form.content === '' ? post.content : form.content,
+        }
+
+        await supabase
+            .from('posts')
+            .update(updatedPost)
+            .eq('postID', params.id)
+
+        setStatus({ isUpdated: true })
+        setTimeout(() => {
+            setStatus({ isUpdated: false })
+
+        }, 2000)
+    }
     useEffect(() => {
         getPost()
     }, [])
-
-
     return (
         <>
             <section className="p-[50px]">
@@ -50,7 +72,7 @@ const Update = () => {
                             className="textarea textarea-bordered w-[35rem] h-36"
                             placeholder="Enter Description"
                             onChange={(e) => setForm({
-                                ...form, description: e.target.value
+                                ...form, content: e.target.value
                             })}
                         ></textarea>
                         <label className="label">
@@ -61,19 +83,18 @@ const Update = () => {
                     <section>
                         <button
                             className="btn"
-                            onClick={(e) => { }}>Save Changes </button>
+                            onClick={(e) => { updatePost(e) }}>Save Changes</button>
                         <button
                             className="btn"
                             onClick={(e) => { }}>Delete Post </button>
 
-
-
-                        <button
-                            className="btn"
-                            onClick={() => {
-                                navigate(`/update/${params.id}}`
-                                )
-                            }}>See Changes  </button>
+                        {status.isUpdated && (
+                            <div className="alert alert-success mt-5">
+                                <div className="flex-1">
+                                    <label className="label">Post Updated Successfully!! Please Refresh Page to see changes</label>
+                                </div>
+                            </div>
+                        )}
                     </section>
                 </form>
             </section>
