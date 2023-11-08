@@ -14,8 +14,6 @@ const Create = () => {
     const [success, setSuccess] = useState(false)
 
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -36,7 +34,13 @@ const Create = () => {
         }
         else {
 
+            const date = new Date()
+            const year = date.getFullYear()
+            const month = date.getMonth()
+            const day = date.getDate()
+
             const updatedPost = {
+                created_at: `${year}-${month}-${day}`,
                 title: form.title,
                 content: form.description,
                 secretKey: form.passKey,
@@ -46,7 +50,7 @@ const Create = () => {
             const createPost = async () => {
                 await supabase
                     .from("posts")
-                    .insert(updatedPost)
+                    .insert([updatedPost])
             }
 
             await createPost()
