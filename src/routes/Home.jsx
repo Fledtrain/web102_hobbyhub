@@ -22,20 +22,27 @@ const Home = () => {
         getPosts()
     }, [])
 
-    const likeCounter = async () => {
-        setLikes(likes + 1)
+    const likeCounter = async (postID) => {
 
-        // If user likes post twice, remove the like
-        if (likes === 1) {
-            setLikes(likes - 1)
+        const postToUpdate = posts.find(post => post.id === postID)
+
+        if (postToUpdate) {
+            const updatedLikes = postToUpdate.likes + 1
+
+            await supabase
+                .from('posts')
+                .update({ likes: updatedLikes })
+                .eq('id', postID)
+                .select('likes')
+
+            setPosts(prevPosts => prevPosts.map(post => {
+                if (post.id === postID) {
+                    return { ...post, likes: updatedLikes }
+                }
+                return post
+            }))
+
         }
-
-
-        const { data } = await supabase
-            .from('posts')
-            .update({ likes: posts.likes })
-            .eq('postID', posts.postID)
-            .select('likes')
     }
 
 
@@ -53,7 +60,7 @@ const Home = () => {
                             <Link to={`/post/${post?.postID}`}>
                                 <button className="btn ">Read More</button>
                             </Link>
-                            <button className="btn " onClick={() => likeCounter}>👍{likes}</button>
+                            <button className="btn " onClick={() => likeCounter(post?.id)}>👍{post?.likes}</button>
                         </div>
                     </section>
                 ))}
