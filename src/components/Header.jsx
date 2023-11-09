@@ -4,7 +4,9 @@ const Header = () => {
     return (
         <>
             <nav className="p-[44px] flex justify-around items-center hero-overlay">
-                <h2 className="text-4xl">The GamerHub</h2>
+                <Link to="/">
+                    <h2 className="text-4xl">The GamerHub</h2>
+                </Link>
                 <ul className="space-x-6">
                     <Link to="/">
                         <button className="btn ">
