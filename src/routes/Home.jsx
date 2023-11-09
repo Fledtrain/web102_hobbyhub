@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 const Home = () => {
     const [posts, setPosts] = useState([])
     const [likes, setLikes] = useState(0)
+    const [search, setSearch] = useState('')
 
     const getPosts = async () => {
         let { data } = await supabase
@@ -45,9 +46,36 @@ const Home = () => {
         }
     }
 
+    const searchPosts = async () => {
+        // Searching posts by Title
+        const { data } = await supabase
+            .from('posts')
+            .select('*')
+            .textSearch('title', search)
+
+        setPosts(data)
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault()
+        searchPosts()
+    }
+
 
     return (
         <>
+            <form className="hero mt-4">
+                <input
+                    type="text"
+                    className="input input-bordered"
+                    onChange={(e) =>
+                        setSearch(e.target.value)
+                    } />
+            </form>
+            <div className="space-x-5 flex justify-center mt-2">
+                <button className="btn" onClick={(e) => handleFormSubmit(e)}>Search</button>
+                <button className="btn" onClick={() => getPosts()}>Reset</button>
+            </div>
             <section className="p-[60px] grid 2xl:grid-cols-4 md:grid-cols-2">
                 {posts && posts.map(post => (
                     <section key={post?.id} className="p-[40px] w-96 shadow-xl card card-bordered">
