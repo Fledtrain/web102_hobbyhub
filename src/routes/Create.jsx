@@ -36,7 +36,7 @@ const Create = () => {
 
             const date = new Date()
             const year = date.getFullYear()
-            const month = date.getMonth()
+            const month = date.getMonth() + 1
             const day = date.getDate()
 
             const updatedPost = {
@@ -92,9 +92,9 @@ const Create = () => {
                         </label>
                     </div>
                     <input
-                        type="file"
-                        accept="image/png, image/jpeg, image/jpg, image/webp, image/gif"
-                        className="file-input file-input-bordered mb-5"
+                        type="text"
+                        className="input input-bordered mb-5"
+                        placeholder="Enter Image URL | Optional"
                         onChange={(e) => setForm(
                             { ...form, image: e.target.value }
                         )} />

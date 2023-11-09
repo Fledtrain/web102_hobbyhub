@@ -59,7 +59,7 @@ const Update = () => {
 
         }, 2000)
     }
-    const imageUrl = `http://127.0.0.1:5173/${post?.image}`;
+
 
 
     useEffect(() => {
@@ -75,7 +75,10 @@ const Update = () => {
                                 <h2 className="hero text-4xl ">{post?.title}</h2>
                                 <p className="card text-2xl text-ellipsis ">{post?.content}</p>
                             </div>
-                            <img src={imageUrl} className="w-[70px]" alt="Image of Bug by User" />
+                            {post?.image ?
+                                <img src={post?.image} className="w-[70px]" alt="Image" /> :
+                                null
+                            }
                         </section>
                     </div>
                 )}
@@ -90,7 +93,7 @@ const Update = () => {
                     <div className="form-control">
                         <textarea
                             className="textarea textarea-bordered w-[35rem] h-36"
-                            placeholder="Enter Description"
+                            placeholder={"Enter Description"}
                             onChange={(e) => setForm({
                                 ...form, content: e.target.value
                             })}

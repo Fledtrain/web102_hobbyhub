@@ -11,14 +11,20 @@ const CommentSection = ({ postID }) => {
     const [loading, setLoading] = useState(false);
 
     const getComments = async () => {
+        setLoading(true)
+
         const { data } = await supabase
             .from('comments')
             .select()
             .eq('postID', postID)
             .order('created_at', { ascending: false });
 
-        if (!data) return;
+        if (!data) {
+            setLoading(false)
+            return
+        }
         setComments(data);
+        setLoading(false)
     };
 
     const addComment = async () => {
@@ -28,7 +34,7 @@ const CommentSection = ({ postID }) => {
             setLoading(false)
             return;
         }
-        if (userID.trim() === '') {
+        if (userID === '') {
             setCommentError(true)
             setLoading(false)
             return;

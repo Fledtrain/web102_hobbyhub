@@ -10,16 +10,19 @@ const Post = () => {
     const [secretKey, setSecretkey] = useState(0)
     const [isNotSecretKey, setisNotSecretKey] = useState(false)
     const [isSecretKey, setisSecretKey] = useState(false)
+    const [loading, setLoading] = useState(false)
 
 
     /** Function for getting the post from the database
      */
     const getPost = async () => {
+        setLoading(true)
         const { data } = await supabase
             .from('posts')
             .select('*')
             .eq('postID', params.id)
 
+        setLoading(false)
         setPost(data[0])
     }
 
@@ -66,8 +69,16 @@ const Post = () => {
                         {post && (
                             <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
                                 <div className="card-body">
-                                    <h2 className="hero text-4xl ">{post?.title}</h2>
-                                    <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                                    {loading ?
+                                        <div className="hero">
+                                            <p className="loading loading-lg p-[30px]"></p>
+                                        </div>
+                                        :
+                                        <>
+                                            <h2 className="hero text-4xl ">{post?.title}</h2>
+                                            <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                                        </>
+                                    }
                                 </div>
                             </section>
                         )}
