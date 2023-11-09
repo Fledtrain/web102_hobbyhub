@@ -4,14 +4,14 @@ import { Link } from "react-router-dom"
 
 const Home = () => {
     const [posts, setPosts] = useState([])
-    const [likes, setLikes] = useState(0)
     const [search, setSearch] = useState('')
+    const [sortBy, setSortBy] = useState(true)
 
     const getPosts = async () => {
         let { data } = await supabase
             .from('posts')
             .select('*')
-            .order('created_at', { ascending: false })
+            .order('created_at', { ascending: sortBy })
 
         try {
             setPosts(data)
@@ -21,10 +21,13 @@ const Home = () => {
     }
     useEffect(() => {
         getPosts()
-    }, [])
+    }, [sortBy])
+
+    const handleSortChange = () => {
+        setSortBy((prevSortBy) => !prevSortBy)
+    }
 
     const likeCounter = async (postID) => {
-
         const postToUpdate = posts.find(post => post.id === postID)
 
         if (postToUpdate) {
@@ -75,6 +78,14 @@ const Home = () => {
             <div className="space-x-5 flex justify-center mt-2">
                 <button className="btn" onClick={(e) => handleFormSubmit(e)}>Search</button>
                 <button className="btn" onClick={() => getPosts()}>Reset</button>
+            </div>
+            <div className="space-x-5 flex justify-center mt-3">
+                <button
+                    className="btn"
+                    onClick={() => handleSortChange()}
+                >
+                    Sort Date {sortBy ? 'Ascending' : 'Descending'}
+                </button>
             </div>
             <section className="p-[60px] grid 2xl:grid-cols-4 md:grid-cols-2">
                 {posts && posts.map(post => (
