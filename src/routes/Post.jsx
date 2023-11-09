@@ -61,8 +61,7 @@ const Post = () => {
     return (
         <>
             <div className="flex flex-wrap">
-                <div className="w-2/4">
-
+                <div className="w-full xl:w-2/4">
                     <section className="p-[50px]">
                         {post && (
                             <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
@@ -74,7 +73,7 @@ const Post = () => {
                         )}
                     </section>
                 </div >
-                <section className="p-[50px] w-2/4 ">
+                <section className="p-[50px] w-full xl:w-2/4 ">
                     <CommentSection postID={post?.postID} />
                 </section>
             </div >

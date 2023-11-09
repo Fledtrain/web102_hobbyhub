@@ -21,14 +21,14 @@ const CommentSection = ({ postID }) => {
         if (newComment.trim() === '') return;
 
         await supabase
-        .from('comments')
-        .insert([
-            {
-                postID: postID,
-                comment: newComment,
-            },
-        ])
-        .eq('postID', postID)
+            .from('comments')
+            .insert([
+                {
+                    postID: postID,
+                    comment: newComment,
+                },
+            ])
+            .eq('postID', postID)
 
         // Clear the input field after adding a comment
         setNewComment('');
@@ -42,23 +42,25 @@ const CommentSection = ({ postID }) => {
     }, [postID]);
 
     return (
-        <div className="comment-section">
+        <section >
             <h2 className='hero text-4xl'>Comments Section</h2>
-            <ul className='hero'>
-                {comments?.map((comment) => (
-                    <li key={comment.postID}>{comment.comment}</li>
-
-                ))}
-            </ul>
-            <div>
+            <aside className=''>
                 <textarea
+                    className='textarea textarea-bordered h-40 hero mt-5 '
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="Add a comment"
                 />
-                <button onClick={addComment}>Submit</button>
+            </aside>
+            <div className='hero'>
+                <button onClick={addComment} className='btn mt-4  w-[20rem]'>Submit</button>
             </div>
-        </div>
+            <ul className=' hero-overlay mt-2'>
+                {comments?.map((comment) => (
+                    <li key={comment.postID}>User {1}: {comment.comment}</li>
+                ))}
+            </ul>
+        </section>
     );
 };
 
