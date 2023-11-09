@@ -54,7 +54,6 @@ const Home = () => {
                         <p>Posted {post.created_at} </p>
                         <div className="card-body">
                             <h2 className="card-title">{post?.title}</h2>
-                            <p className="card">{post?.content}</p>
                         </div>
                         <div className="card-footer flex space-x-32">
                             <Link to={`/post/${post?.postID}`}>

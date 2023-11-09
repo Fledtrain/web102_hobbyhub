@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { supabase } from "../client"
 import { useEffect, useState } from "react"
+import CommentSection from "../components/CommentSection"
 
 const Post = () => {
     const params = useParams()
@@ -56,19 +57,27 @@ const Post = () => {
     }, [])
 
 
+
     return (
         <>
-            <section className="p-[50px] hero">
+            <div className="flex flex-wrap">
+                <div className="w-2/4">
 
-                {post && (
-                    <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
-                        <div className="card-body">
-                            <h2 className="hero text-4xl ">{post?.title}</h2>
-                            <p className="card text-2xl text-ellipsis ">{post?.content}</p>
-                        </div>
+                    <section className="p-[50px]">
+                        {post && (
+                            <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
+                                <div className="card-body">
+                                    <h2 className="hero text-4xl ">{post?.title}</h2>
+                                    <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                                </div>
+                            </section>
+                        )}
                     </section>
-                )}
-            </section>
+                </div >
+                <section className="p-[50px] w-2/4 ">
+                    <CommentSection postID={post?.postID} />
+                </section>
+            </div >
             <section className="flex flex-col">
                 <form>
                     <div className="hero">
