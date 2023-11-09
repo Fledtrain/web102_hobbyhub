@@ -1,8 +1,8 @@
 // CommentSection.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../client';
-import { data } from 'autoprefixer';
 
+// eslint-disable-next-line react/prop-types
 const CommentSection = ({ postID }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
