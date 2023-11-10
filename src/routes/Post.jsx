@@ -8,21 +8,23 @@ const Post = () => {
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
     const [secretKey, setSecretkey] = useState(0)
-    const [isNotSecretKey, setisNotSecretKey] = useState(false)
-    const [isSecretKey, setisSecretKey] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState({
+        isNotSecretKey: false,
+        isSecretKey: false,
+        loading: false
+    })
 
 
     /** Function for getting the post from the database
      */
     const getPost = async () => {
-        setLoading(true)
+        setStatus({ ...status, loading: true })
         const { data } = await supabase
             .from('posts')
             .select('*')
             .eq('postID', params.id)
 
-        setLoading(false)
+        setStatus({ ...status, loading: false })
         setPost(data[0])
     }
 
@@ -39,17 +41,17 @@ const Post = () => {
 
         // If the secretKey is correct, redirect to the Update page
         if (data.length > 0) {
-            setisSecretKey(true)
+            setStatus({ ...status, isSecretKey: true})
             setTimeout(() => {
 
                 navigate(`/update/${params.id}`)
             }, 1500)
         }
         else {
-            setisNotSecretKey(true)
-
+            setStatus({ ...status, isNotSecretKey: true})
+            
             setTimeout(() => {
-                setisNotSecretKey(false)
+                setStatus({ ...status, isNotSecretKey: false})
             }, 2500)
         }
 
@@ -69,7 +71,7 @@ const Post = () => {
                         {post && (
                             <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
                                 <div className="card-body">
-                                    {loading ?
+                                    {status.loading ?
                                         <div className="hero">
                                             <p className="loading loading-lg p-[30px]"></p>
                                         </div>
@@ -77,6 +79,9 @@ const Post = () => {
                                         <>
                                             <h2 className="hero text-4xl ">{post?.title}</h2>
                                             <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                                            <div className="mt-4">
+                                                <p className="text-2xl">👍: {post?.likes}</p>
+                                            </div>
                                         </>
                                     }
                                 </div>
@@ -103,8 +108,8 @@ const Post = () => {
                 </form>
                 <div className="hero">
                     <div className="">
-                        {isSecretKey && <p className="alert alert-success uppercase mt-5">You are allowed to Edit</p>}
-                        {isNotSecretKey && <p className="alert alert-error uppercase mt-5 font-semibold">secretKey is Wrong</p>}
+                        {status.isSecretKey && <p className="alert alert-success uppercase mt-5">You are allowed to Edit</p>}
+                        {status.isNotSecretKey && <p className="alert alert-error uppercase mt-5 font-semibold">secretKey is Wrong</p>}
                     </div>
                 </div>
             </section>

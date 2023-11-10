@@ -66,7 +66,7 @@ const CommentSection = ({ postID }) => {
 
     return (
         <section >
-            <h2 className='hero text-4xl'>Comments Section</h2>
+            <h2 className='hero text-4xl'>Comments </h2>
             <div className='flex justify-center'>
                 {commentError && <p className='alert alert-error mt-2 w-[40rem] '>Please fill in the info before Commenting!</p>}
             </div>

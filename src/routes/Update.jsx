@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { supabase } from "../client"
 
 const Update = () => {
@@ -49,15 +49,21 @@ const Update = () => {
         e.preventDefault()
 
         await supabase
+            .from('comments')
+            .delete()
+            .eq('postID', params.id)
+
+        await supabase
             .from('posts')
             .delete()
             .eq('postID', params.id)
+
 
         setStatus({ isDeleted: true })
         setTimeout(() => {
             setStatus({ isDeleted: false })
 
-        }, 2000)
+        }, 8000)
     }
 
 
@@ -120,10 +126,13 @@ const Update = () => {
                         )}
                         {
                             status.isDeleted && (
-                                <div className="alert alert-success mt-5">
-                                    <div className="flex-1">
-                                        <label className="label">Post Deleted Successfully!! Click here to go to Home Page</label>
+                                <div className="alert alert-error mt-5">
+                                    <div className="flex">
+                                        <label className="label">Post Deleted Successfully!!</label>
                                     </div>
+                                    <Link to="/">
+                                        <button className="">Click here to go to Home Page</button>
+                                    </Link>
                                 </div>
                             )
                         }

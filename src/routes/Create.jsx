@@ -9,14 +9,17 @@ const Create = () => {
         passKey: 0,
         image: ''
     })
-    const [loading, setLoading] = useState(false)
-    const [alert, setAlert] = useState(false)
-    const [success, setSuccess] = useState(false)
+
+    const [status, setStatus] = useState({
+        loading: false,
+        success: false,
+        error: false
+    })
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(true)
+        setStatus({ ...status, loading: true })
 
         // Remove the fake path from the image
         const path = form.image.split('\\')
@@ -24,11 +27,12 @@ const Create = () => {
 
         // Check if all fields are filled
         if (!form.title || !form.description || !form.passKey) {
-            setAlert(true)
-            setLoading(false)
+
+            setStatus({ ...status, alert: true })
+            setStatus({ ...status, loading: false })
 
             setTimeout(() => {
-                setAlert(false)
+                setStatus({ ...status, alert: false })
 
             }, 2000)
         }
@@ -55,8 +59,8 @@ const Create = () => {
 
             await createPost()
 
-            setLoading(false)
-            setSuccess(true)
+            setStatus({ ...status, loading: false })
+            setStatus({ ...status, success: true })
             setForm({
                 title: '',
                 description: '',
@@ -69,18 +73,19 @@ const Create = () => {
     return (
         <>
             <section className="p-[90px] ">
-                {alert && <p className="alert alert-error mb-[20px]">Please fill in all fields</p>}
-                <form className="form-control">
+                <h2 className="text-3xl hero mb-4">Create New Post</h2>
+                {setStatus.alert && <p className="alert alert-error mb-[20px]">Please fill in all fields</p>}
+                <form className="flex justify-center items-center form-control  ">
                     <input
                         type="text"
                         placeholder="Enter Title"
-                        className="input input-bordered mb-5"
+                        className="input input-bordered mb-5 w-[35rem] "
                         onChange={(e) => setForm(
                             { ...form, title: e.target.value }
                         )} />
                     <div className="form-control">
                         <textarea
-                            className="textarea textarea-bordered h-24"
+                            className="textarea textarea-bordered h-24 w-[35rem]"
                             placeholder="Enter Description"
                             onChange={(e) => setForm({
                                 ...form, description: e.target.value
@@ -93,7 +98,7 @@ const Create = () => {
                     </div>
                     <input
                         type="text"
-                        className="input input-bordered mb-5"
+                        className="input input-bordered mb-5 w-[35rem]"
                         placeholder="Enter Image URL | Optional"
                         onChange={(e) => setForm(
                             { ...form, image: e.target.value }
@@ -102,7 +107,7 @@ const Create = () => {
                         <input
                             type="number"
                             placeholder="Enter 4 digit passkey"
-                            className="input input-bordered"
+                            className="input input-bordered w-[35rem]"
                             onChange={(e) => setForm(
                                 { ...form, passKey: Number(e.target.value) }
                             )} />
@@ -110,11 +115,11 @@ const Create = () => {
                             <span className="label-text-alt ">For Editing post later </span>
                         </label>
                     </div>
-                    {loading ?
+                    {setStatus.loading ?
                         <p className="loading"></p>
-                        : <button className="btn mt-5 " onClick={handleSubmit}>Create Post</button>}
+                        : <button className="btn mt-5 w-[35rem]" onClick={handleSubmit}>Create Post</button>}
                     {
-                        success &&
+                        setStatus.success &&
                         <>
                             <p className="alert alert-success mt-5">Post created successfully</p>
                             <Link to="/" className="btn mt-5">Check it out here!</Link>

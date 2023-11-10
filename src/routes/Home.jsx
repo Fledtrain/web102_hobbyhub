@@ -1,34 +1,37 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../client"
 import { Link } from "react-router-dom"
+import LandingPage from "./LandingPage"
 
 const Home = () => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('')
-    const [sortBy, setSortBy] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [status, setStatus] = useState({
+        sortBy: false,
+        loading: false
+    })
 
     const getPosts = async () => {
-        setLoading(true)
+        setStatus({ ...status, loading: true })
         let { data } = await supabase
             .from('posts')
             .select('*')
-            .order('created_at', { ascending: sortBy })
+            .order('created_at', { ascending: status.sortBy })
 
         try {
             setPosts(data)
-            setLoading(false)
+            setStatus({ ...status, loading: false })
         } catch (error) {
             console.error(error)
-            setLoading(false)
+            setStatus({ ...status, loading: false })
         }
     }
     useEffect(() => {
         getPosts()
-    }, [sortBy])
+    }, [status.sortBy])
 
     const handleSortChange = () => {
-        setSortBy((prevSortBy) => !prevSortBy)
+        setStatus({ ...status, sortBy: !status.sortBy })
     }
 
     const likeCounter = async (postID) => {
@@ -71,6 +74,7 @@ const Home = () => {
 
     return (
         <>
+        <LandingPage />
             <form className="hero mt-4">
                 <input
                     type="text"
@@ -88,13 +92,13 @@ const Home = () => {
                     className="btn"
                     onClick={() => handleSortChange()}
                 >
-                    Sort Date {sortBy ? 'Ascending' : 'Descending'}
+                    Sort Date {status.sortBy ? 'Ascending' : 'Descending'}
                 </button>
             </div>
             <section className="p-[60px] grid 2xl:grid-cols-4 md:grid-cols-2">
                 {posts && posts.map(post => (
-                    <section key={post?.id} className="p-[40px] w-96 card-bordered card card-normal mt-3 bg-base-300 shadow-lg">
-                        {loading ? <p className="loading loading-lg"></p> :
+                    <section key={post?.id} className="p-[40px] w-96 card-bordered card card-normal mt-3 bg-neutral-focus shadow-lg">
+                        {status.loading ? <p className="loading loading-lg"></p> :
                             <>
                                 <p>Posted {post.created_at} </p>
                                 <div className="card-body">
