@@ -69,7 +69,7 @@ const Post = () => {
                 <div className="w-full xl:w-2/4">
                     <section className="p-[50px]">
                         {post && (
-                            <section className="p-[120px] w-[55rem] shadow-xl card card-bordered "  >
+                            <section className="p-[120px] w-[55rem] shadow-xl card card-bordered bg-neutral-focus "  >
                                 <div className="card-body">
                                     {status.loading ?
                                         <div className="hero">

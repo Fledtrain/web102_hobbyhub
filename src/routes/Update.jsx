@@ -76,7 +76,7 @@ const Update = () => {
             <section className="p-[50px]">
                 {post && (
                     <div className="hero">
-                        <section className="p-[120px] w-[55rem] shadow-xl card card-bordered  "  >
+                        <section className="p-[120px] w-[55rem] shadow-xl card card-bordered bg-neutral-focus  "  >
                             <div className="card-body">
                                 <h2 className="hero text-4xl ">{post?.title}</h2>
                                 <p className="card text-2xl text-ellipsis ">{post?.content}</p>
