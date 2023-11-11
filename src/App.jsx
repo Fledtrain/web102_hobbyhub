@@ -5,6 +5,7 @@ import Create from './routes/Create'
 import Post from './routes/Post'
 import Update from './routes/Update'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/post/:id" element={<Post />} />
           <Route path="/update/:id" element={<Update />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
