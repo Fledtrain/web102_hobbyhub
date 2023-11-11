@@ -73,7 +73,7 @@ const Create = () => {
     return (
         <>
             <section className="p-[90px] ">
-                <h2 className="text-3xl hero mb-4">Create New Post</h2>
+                <h2 className="text-3xl hero mb-4 text-white">Create New Post</h2>
                 {setStatus.alert && <p className="alert alert-error mb-[20px]">Please fill in all fields</p>}
                 <form className="flex justify-center items-center form-control  ">
                     <input
@@ -117,7 +117,9 @@ const Create = () => {
                     </div>
                     {setStatus.loading ?
                         <p className="loading"></p>
-                        : <button className="btn mt-5 w-[35rem]" onClick={handleSubmit}>Create Post</button>}
+                        : <button
+                            className="btn mt-5 w-[35rem] text-white"
+                            onClick={handleSubmit}>Create Post</button>}
                     {
                         setStatus.success &&
                         <>
