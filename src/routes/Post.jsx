@@ -41,17 +41,17 @@ const Post = () => {
 
         // If the secretKey is correct, redirect to the Update page
         if (data.length > 0) {
-            setStatus({ ...status, isSecretKey: true})
+            setStatus({ ...status, isSecretKey: true })
             setTimeout(() => {
 
                 navigate(`/update/${params.id}`)
             }, 1500)
         }
         else {
-            setStatus({ ...status, isNotSecretKey: true})
-            
+            setStatus({ ...status, isNotSecretKey: true })
+
             setTimeout(() => {
-                setStatus({ ...status, isNotSecretKey: false})
+                setStatus({ ...status, isNotSecretKey: false })
             }, 2500)
         }
 
@@ -69,7 +69,7 @@ const Post = () => {
                 <div className="w-full xl:w-2/4">
                     <section className="p-[50px]">
                         {post && (
-                            <section className="p-[120px] w-[55rem] shadow-xl card card-bordered bg-neutral-focus "  >
+                            <section className="p-[120px] w-[25rem] xl:w-[45rem] shadow-xl card card-bordered bg-neutral-focus "  >
                                 <div className="card-body">
                                     {status.loading ?
                                         <div className="hero">
