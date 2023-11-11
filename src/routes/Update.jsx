@@ -41,8 +41,8 @@ const Update = () => {
         setStatus({ isUpdated: true })
         setTimeout(() => {
             setStatus({ isUpdated: false })
-
-        }, 2000)
+        }, 4000)
+        getPost()
     }
 
     const deletePost = async (e) => {
@@ -116,11 +116,12 @@ const Update = () => {
                         <button
                             className="btn"
                             onClick={(e) => { deletePost(e) }}>Delete Post </button>
-
+                    </section>
+                    <section>
                         {status.isUpdated && (
                             <div className="alert alert-success mt-5">
-                                <div className="flex-1">
-                                    <label className="label">Post Updated Successfully!! Please Refresh Page to see changes</label>
+                                <div className="">
+                                    <label className="label ">Post Updated Successfully!!</label>
                                 </div>
                             </div>
                         )}

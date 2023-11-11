@@ -77,10 +77,10 @@ const Post = () => {
                                         </div>
                                         :
                                         <>
-                                            <h2 className="hero text-4xl ">{post?.title}</h2>
+                                            <h2 className="hero text-4xl text-white ">{post?.title}</h2>
                                             <p className="card text-2xl text-ellipsis ">{post?.content}</p>
                                             <div className="mt-4">
-                                                <p className="text-2xl">👍: {post?.likes}</p>
+                                                <p className="text-xl">👍: {post?.likes}</p>
                                             </div>
                                         </>
                                     }
