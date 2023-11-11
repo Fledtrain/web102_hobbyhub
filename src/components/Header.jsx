@@ -5,7 +5,7 @@ const Header = () => {
         <>
             <nav className="p-[44px] flex justify-around items-center hero-overlay">
                 <Link to="/">
-                    <h2 className="text-4xl">The Gamer<span className="text-orange-500">Hub</span></h2>
+                    <h2 className="text-4xl">The Gamer<span className="">Hub</span></h2>
                 </Link>
                 <ul className="space-x-6">
                     <Link to="/">
