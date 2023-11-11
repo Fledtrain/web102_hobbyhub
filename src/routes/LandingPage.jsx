@@ -12,7 +12,7 @@ const LandingPage = () => {
                     </h1>
                 </div>
                 <Link to="/create">
-                    <button className="hero btn-link text-2xl">Click Here to make a new Post</button>
+                    <button className="hero btn-link text-2xl font-semibold">Click Here to make a new Post</button>
                 </Link>
             </section>
         </>
