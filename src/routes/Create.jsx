@@ -26,15 +26,14 @@ const Create = () => {
         const newPath = path[path.length - 1]
 
         // Check if all fields are filled
-        if (!form.title || !form.description || !form.passKey) {
+        if (form.title === "" || form.description === "" || form.passKey === "") {
 
-            setStatus({ ...status, alert: true })
-            setStatus({ ...status, loading: false })
+            setStatus({ ...status, loading: false, error: true })
 
             setTimeout(() => {
-                setStatus({ ...status, alert: false })
+                setStatus({ ...status, error: false })
 
-            }, 2000)
+            }, 3000)
         }
         else {
 
@@ -59,14 +58,21 @@ const Create = () => {
 
             await createPost()
 
-            setStatus({ ...status, loading: false })
-            setStatus({ ...status, success: true })
+            setStatus({
+                loading: false,
+                alert: false,
+                success: true,
+            });
             setForm({
                 title: '',
                 description: '',
                 passKey: 0,
                 image: ''
             })
+
+            setTimeout(() => {
+                setStatus({ ...status, success: false })
+            }, 3000)
         }
     }
 
@@ -74,7 +80,12 @@ const Create = () => {
         <>
             <section className="p-[90px] ">
                 <h2 className="text-3xl hero mb-4 text-white">Create New Post</h2>
-                {setStatus.alert && <p className="alert alert-error mb-[20px]">Please fill in all fields</p>}
+                {status.error &&
+                    <div className="flex justify-center">
+                        <p className="alert alert-error mb-[20px] w-[35rem]">Please fill in all fields</p>
+                    </div>
+
+                }
                 <form className="flex justify-center items-center form-control  ">
                     <input
                         type="text"
@@ -93,7 +104,7 @@ const Create = () => {
                         ></textarea>
                         <label className="label">
                             <span className="label-text-alt"></span>
-                            <span className="label-text-alt">Enter Description </span>
+                            <span className="label-text-alt">Enter Description for Post </span>
                         </label>
                     </div>
                     <input
@@ -115,15 +126,19 @@ const Create = () => {
                             <span className="label-text-alt ">For Editing post later </span>
                         </label>
                     </div>
-                    {setStatus.loading ?
+                    {status.loading ?
                         <p className="loading"></p>
                         : <button
                             className="btn mt-5 w-[35rem] text-white"
-                            onClick={handleSubmit}>Create Post</button>}
+                            onClick={handleSubmit}
+                        >
+                            Create Post</button>}
                     {
-                        setStatus.success &&
+                        status.success &&
                         <>
-                            <p className="alert alert-success mt-5">Post created successfully</p>
+                            <div>
+                                <p className="alert alert-success mt-5 w-[35rem]">Post created successfully</p>
+                            </div>
                             <Link to="/" className="btn mt-5">Check it out here!</Link>
                         </>
                     }
