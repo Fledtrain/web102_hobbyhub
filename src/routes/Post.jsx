@@ -68,7 +68,7 @@ const Post = () => {
         <>
             <div className="flex flex-wrap">
                 <SinglePost post={post} status={status} />
-                <section className="p-[50px] w-full xl:w-2/4 ">
+                <section className="p-[50px] w-full lg:w-2/4 ">
                     <CommentSection postID={post?.postID} />
                 </section>
             </div >

@@ -9,10 +9,10 @@
 const SinglePost = ({ post, status }) => {
     return (
         <>
-            <div className="w-full xl:w-2/4">
+            <div className="w-full lg:w-2/4">
                 <section className="p-[50px]">
                     {post && (
-                        <section className="p-[120px] w-[25rem] xl:w-[45rem] shadow-xl card card-bordered bg-neutral-focus "  >
+                        <section className="p-[120px] w-[30rem] sm:w-[35rem] xl:w-[45rem] shadow-xl card card-bordered bg-neutral-focus "  >
                             <div className="card-body">
                                 {status.loading ?
                                     <div className="hero">
