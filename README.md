@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 - [ ] Users can share and view web videos
 - [ ] Users can set flags while creating a post. Then users can filter posts by flags on the home feed.
 - [ ] Users can upload images directly from their local machine as an image file
-- [ ] Display a loading animation whenever data is being fetched
+- [x] Display a loading animation whenever data is being fetched
 
 The following **additional** features are implemented:
 
@@ -47,8 +47,8 @@ GIF created with LICEcap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
 I had trouble creating a new table for comments and linking it to the posts table but after a few hours of research I was able to figure it out.
+
 ## License
 
     Copyright 2023 Joey Whitehead
