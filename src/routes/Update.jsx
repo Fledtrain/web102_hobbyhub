@@ -13,6 +13,7 @@ const Update = () => {
     const [status, setStatus] = useState({
         isUpdated: false,
         isDeleted: false,
+        isLoading: false
     })
 
 
@@ -27,6 +28,7 @@ const Update = () => {
 
     const updatePost = async (e) => {
         e.preventDefault()
+        setStatus({ ...status, isLoading: true })
 
         const updatedPost = {
             title: form.title === '' ? post.title : form.title,
@@ -38,15 +40,16 @@ const Update = () => {
             .update(updatedPost)
             .eq('postID', params.id)
 
-        setStatus({ isUpdated: true })
+        setStatus({ ...status, isLoading: false, isUpdated: true })
         setTimeout(() => {
-            setStatus({ isUpdated: false })
+            setStatus({ ...status, isUpdated: false })
         }, 4000)
         getPost()
     }
 
     const deletePost = async (e) => {
         e.preventDefault()
+        setStatus({ ...status, isLoading: true })
 
         await supabase
             .from('comments')
@@ -59,9 +62,9 @@ const Update = () => {
             .eq('postID', params.id)
 
 
-        setStatus({ isDeleted: true })
+        setStatus({ ...status, isLoading: false, isDeleted: true })
         setTimeout(() => {
-            setStatus({ isDeleted: false })
+            setStatus({ ...status, isDeleted: false })
 
         }, 8000)
     }
@@ -110,12 +113,16 @@ const Update = () => {
                         </label>
                     </div>
                     <section className="space-x-6">
-                        <button
-                            className="btn"
-                            onClick={(e) => { updatePost(e) }}>Save Changes</button>
-                        <button
-                            className="btn"
-                            onClick={(e) => { deletePost(e) }}>Delete Post </button>
+                        {status.isLoading ? <p className="loading loading-lg"></p> :
+                            <>
+                                <button
+                                    className="btn"
+                                    onClick={(e) => { updatePost(e) }}>Save Changes</button>
+                                <button
+                                    className="btn"
+                                    onClick={(e) => { deletePost(e) }}>Delete Post </button>
+                            </>
+                        }
                     </section>
                     <section>
                         {status.isUpdated && (
@@ -123,6 +130,9 @@ const Update = () => {
                                 <div className="">
                                     <label className="label ">Post Updated Successfully!!</label>
                                 </div>
+                                <Link to={`/post/${params.id}`}>
+                                    <button className="">Click here to go to back to post</button>
+                                </Link>
                             </div>
                         )}
                         {
