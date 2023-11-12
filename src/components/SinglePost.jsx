@@ -21,7 +21,9 @@ const SinglePost = ({ post, status }) => {
                                     :
                                     <>
                                         <h2 className="hero text-4xl text-white ">{post?.title}</h2>
-                                        <p className="card text-2xl text-ellipsis ">{post?.content}</p>
+                                        <div className="overflow-auto overflow-ellipsis text-left ">
+                                            <p className="card text-2xl text-ellipsis">{post?.content}</p>
+                                        </div>
                                         <div className="mt-4">
                                             <p className="text-xl">👍: {post?.likes}</p>
                                         </div>
