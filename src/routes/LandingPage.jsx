@@ -14,6 +14,7 @@ const LandingPage = () => {
                 <Link to="/create">
                     <button className="hero btn-link text-2xl font-semibold">Click Here to make a new Post</button>
                 </Link>
+                <p className="hero text-2xl mt-2">Or Browse Below </p>
             </section>
         </>
     )
