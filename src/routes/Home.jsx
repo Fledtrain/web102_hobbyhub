@@ -61,7 +61,7 @@ const Home = () => {
                         setSearch(e.target.value)
                     } />
             </form>
-            <div className="space-x-5 flex justify-center mt-2">
+            <div className="space-x-6 flex justify-center mt-2">
                 <button className="btn" onClick={(e) => handleFormSubmit(e)}>Search</button>
                 <button className="btn" onClick={() => getPosts()}>Reset</button>
             </div>
