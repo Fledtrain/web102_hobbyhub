@@ -38,7 +38,7 @@ const AllPosts = ({ posts, setPosts, status }) => {
                             <>
                                 <p>Posted {post.created_at} </p>
                                 <div className="card-body">
-                                    <h2 className="card-title">{post?.title}</h2>
+                                    <h2 className="card-title text-white">{post?.title}</h2>
                                 </div>
                                 <div className="card-footer flex space-x-32">
                                     <Link to={`/post/${post?.postID}`}>
