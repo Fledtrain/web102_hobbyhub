@@ -109,7 +109,7 @@ const Update = () => {
                             <span className="label-text-alt">Enter Description </span>
                         </label>
                     </div>
-                    <section>
+                    <section className="space-x-6">
                         <button
                             className="btn"
                             onClick={(e) => { updatePost(e) }}>Save Changes</button>
