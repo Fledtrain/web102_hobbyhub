@@ -34,6 +34,7 @@ const Post = () => {
      */
     const checkPasskey = async (e, secretKey) => {
         e.preventDefault()
+        setStatus({ ...status, loading: true })
         const { data } = await supabase
             .from('posts')
             .select('*')
@@ -49,7 +50,7 @@ const Post = () => {
             }, 1500)
         }
         else {
-            setStatus({ ...status, isNotSecretKey: true })
+            setStatus({ ...status, loading: false, isNotSecretKey: true })
 
             setTimeout(() => {
                 setStatus({ ...status, isNotSecretKey: false })
