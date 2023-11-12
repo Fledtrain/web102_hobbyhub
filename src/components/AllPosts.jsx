@@ -27,7 +27,7 @@ const AllPosts = ({ posts, setPosts, status }) => {
     }
     return (
         <>
-            <section className="p-[60px] grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2">
+            <section className="p-[60px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 ">
                 {posts && posts.map(post => (
                     <section key={post?.id} className="p-[40px] w-96 card-bordered card card-normal mt-4 bg-neutral-focus shadow-lg">
                         {status.loading ?
