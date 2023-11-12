@@ -57,6 +57,7 @@ const Home = () => {
                 <input
                     type="text"
                     className="input input-bordered"
+                    placeholder="Search Posts by Title"
                     onChange={(e) =>
                         setSearch(e.target.value)
                     } />
