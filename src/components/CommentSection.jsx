@@ -2,6 +2,11 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../client';
 
+/** Returns all comments for a post
+ * @param {Object} props
+ * @param {Number} props.postID - ID of the post  
+ * @returns 
+*/
 // eslint-disable-next-line react/prop-types
 const CommentSection = ({ postID }) => {
     const [comments, setComments] = useState([]);
@@ -10,6 +15,9 @@ const CommentSection = ({ postID }) => {
     const [commentError, setCommentError] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    /** Fetches all comments for a post
+     * @returns {String} All comments for a post
+     */
     const getComments = async () => {
         setLoading(true)
 
@@ -27,6 +35,9 @@ const CommentSection = ({ postID }) => {
         setLoading(false)
     };
 
+    /** Adds a comment to a post
+     * @returns {String} Adds a comment to a post
+     */
     const addComment = async () => {
         setLoading(true)
         if (newComment.trim() === '') {

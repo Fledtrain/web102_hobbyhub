@@ -2,8 +2,19 @@
 import { Link } from "react-router-dom"
 import { supabase } from "../client"
 
-
+/** Returns all posts in the DB
+ * @param {Object} props
+ * @param {Array} props.posts - Array of posts
+ * @param {Function} props.setPosts - Function to set posts
+ * @param {Boolean} props.status - Status of the posts
+ * @returns 
+ */
 const AllPosts = ({ posts, setPosts, status }) => {
+    
+    /** Increments the like counter for a post
+     * @param {Number} postID 
+     * @returns Updated like
+     */
     const likeCounter = async (postID) => {
         const postToUpdate = posts.find(post => post.id === postID)
 
