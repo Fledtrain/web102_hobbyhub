@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom"
 
+/** Function for landing page
+ * @returns Landing Page
+ */
 const LandingPage = () => {
     return (
         <>

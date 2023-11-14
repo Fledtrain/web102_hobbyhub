@@ -4,6 +4,9 @@ import { useEffect, useState } from "react"
 import CommentSection from "../components/CommentSection"
 import SinglePost from "../components/SinglePost"
 
+/** Function for post page
+ * @returns Post Route
+ */
 const Post = () => {
     const params = useParams()
     const navigate = useNavigate()
@@ -17,6 +20,7 @@ const Post = () => {
 
 
     /** Function for getting the post from the database
+     * @returns Post from the database
      */
     const getPost = async () => {
         setStatus({ ...status, loading: true })
@@ -30,7 +34,9 @@ const Post = () => {
     }
 
     /** Function for checking the secretKey
-     * @param {number} secretKey 
+     * @param {number} secretKey
+     * @param {Event} e - Event
+     * @returns Redirects to the Update page
      */
     const checkPasskey = async (e, secretKey) => {
         e.preventDefault()

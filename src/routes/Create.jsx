@@ -2,6 +2,9 @@ import { useState } from "react"
 import { supabase } from "../client"
 import { Link } from "react-router-dom"
 
+/** Function for create post page
+ * @returns Create Route
+ */
 const Create = () => {
     const [form, setForm] = useState({
         title: '',
@@ -17,6 +20,10 @@ const Create = () => {
     })
 
 
+    /** Function to handle submit
+     * @param {Event} e - Event
+     * @returns  
+     */
     const handleSubmit = async (e) => {
         e.preventDefault()
         setStatus({ ...status, loading: true })
@@ -50,6 +57,9 @@ const Create = () => {
                 image: newPath
             }
 
+            /**Function to create a post
+             * @returns Newly created post
+             */
             const createPost = async () => {
                 await supabase
                     .from("posts")

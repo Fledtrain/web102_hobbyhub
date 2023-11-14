@@ -3,6 +3,9 @@ import { supabase } from "../client"
 import LandingPage from "./LandingPage"
 import AllPosts from "../components/AllPosts"
 
+/** Function for home page
+ * @returns Home Route
+ */
 const Home = () => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('')
@@ -11,6 +14,9 @@ const Home = () => {
         loading: false
     })
 
+    /** Function to get all posts
+     * @returns All posts
+     */
     const getPosts = async () => {
         setStatus({ ...status, loading: true })
         let { data } = await supabase
@@ -30,10 +36,16 @@ const Home = () => {
         getPosts()
     }, [status.sortBy])
 
+    /** Function to sort posts
+     * @returns Sorted posts
+     */
     const handleSortChange = () => {
         setStatus({ ...status, sortBy: !status.sortBy })
     }
 
+    /** Function to search posts
+     *  @returns Searched posts
+     */
     const searchPosts = async () => {
         // Searching posts by Title
         const { data } = await supabase
@@ -44,6 +56,10 @@ const Home = () => {
         setPosts(data)
     }
 
+    /** Function to handle form submit
+     * @param {Event} e - Event 
+     * @returns {Function} searchPosts
+     */
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         searchPosts()

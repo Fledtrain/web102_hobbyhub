@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { supabase } from "../client"
 
+/** Function for update post page
+ * @returns Update Route
+ */
 const Update = () => {
     const params = useParams()
     const [post, setPost] = useState(null)
@@ -17,6 +20,9 @@ const Update = () => {
     })
 
 
+    /** Function to get the post from the database
+     * @returns Post from the database
+     */
     const getPost = async () => {
         const { data } = await supabase
             .from('posts')
@@ -26,6 +32,10 @@ const Update = () => {
     }
 
 
+    /** Function to update the post
+     * @param {Event} e - Event 
+     * @returns Updated post
+     */
     const updatePost = async (e) => {
         e.preventDefault()
         setStatus({ ...status, isLoading: true })
@@ -47,6 +57,9 @@ const Update = () => {
         getPost()
     }
 
+    /** Function to delete the post
+     * @param {Event} e - Event 
+     */
     const deletePost = async (e) => {
         e.preventDefault()
         setStatus({ ...status, isLoading: true })
