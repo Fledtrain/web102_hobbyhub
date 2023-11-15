@@ -19,16 +19,17 @@ const Home = () => {
      */
     const getPosts = async () => {
         setStatus({ ...status, loading: true })
-        let { data } = await supabase
-            .from('posts')
-            .select('*')
-            .order('created_at', { ascending: status.sortBy })
-
         try {
+            let { data } = await supabase
+                .from('posts')
+                .select('*')
+                .order('created_at', { ascending: status.sortBy })
+
             setPosts(data)
-            setStatus({ ...status, loading: false })
         } catch (error) {
             console.error(error)
+            setStatus({ ...status, loading: false })
+        } finally {
             setStatus({ ...status, loading: false })
         }
     }
