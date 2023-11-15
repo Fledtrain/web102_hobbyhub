@@ -4,7 +4,7 @@ Submitted by: Joey Whitehead
 
 This web app: The Gamerhub where users can post about their favorite games and discuss them with other users.
 
-Time spent: 10 hours spent in total
+Time spent: 13 hours spent in total
 
 ## Required Features
 
