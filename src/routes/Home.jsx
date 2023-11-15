@@ -80,12 +80,12 @@ const Home = () => {
                     } />
             </form>
             <div className="space-x-6 flex justify-center mt-2">
-                <button className="btn" onClick={(e) => handleFormSubmit(e)}>Search</button>
-                <button className="btn" onClick={() => getPosts()}>Reset</button>
+                <button className="btn text-[#DDDDDD]" onClick={(e) => handleFormSubmit(e)}>Search</button>
+                <button className="btn text-[#DDDDDD]" onClick={() => getPosts()}>Reset</button>
             </div>
             <div className="space-x-5 flex justify-center mt-3">
                 <button
-                    className="btn"
+                    className="btn text-[#DDDDDD]"
                     onClick={() => handleSortChange()}
                 >
                     Sort Date {status.sortBy ? 'Ascending' : 'Descending'}

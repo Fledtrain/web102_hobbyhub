@@ -13,12 +13,12 @@ const Header = () => {
                 </Link>
                 <ul className="space-x-6">
                     <Link to="/">
-                        <button className="btn ">
+                        <button className="btn text-[#DDDDDD]">
                             Home
                         </button>
                     </Link>
                     <Link to="/create">
-                        <button className="btn ">
+                        <button className="btn text-[#DDDDDD] ">
                             Create new Post
                         </button>
                     </Link>

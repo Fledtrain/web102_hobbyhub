@@ -100,13 +100,13 @@ const Create = () => {
                     <input
                         type="text"
                         placeholder="Enter Title"
-                        className="input input-bordered mb-5 w-[35rem] "
+                        className="text-white input input-bordered mb-5 w-[35rem]  "
                         onChange={(e) => setForm(
                             { ...form, title: e.target.value }
                         )} />
                     <div className="form-control">
                         <textarea
-                            className="textarea textarea-bordered h-24 w-[35rem]"
+                            className="textarea textarea-bordered h-24 w-[35rem] text-white"
                             placeholder="Enter Description"
                             onChange={(e) => setForm({
                                 ...form, description: e.target.value
@@ -119,7 +119,7 @@ const Create = () => {
                     </div>
                     <input
                         type="text"
-                        className="input input-bordered mb-5 w-[35rem]"
+                        className="input input-bordered mb-5 w-[35rem] text-white"
                         placeholder="Enter Image URL | Optional"
                         onChange={(e) => setForm(
                             { ...form, image: e.target.value }
@@ -128,7 +128,7 @@ const Create = () => {
                         <input
                             type="number"
                             placeholder="Enter 4 digit passkey"
-                            className="input input-bordered w-[35rem]"
+                            className="input input-bordered w-[35rem] text-white"
                             onChange={(e) => setForm(
                                 { ...form, passKey: Number(e.target.value) }
                             )} />
