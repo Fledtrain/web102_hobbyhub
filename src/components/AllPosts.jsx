@@ -10,7 +10,7 @@ import { supabase } from "../client"
  * @returns 
  */
 const AllPosts = ({ posts, setPosts, status }) => {
-    
+
     /** Increments the like counter for a post
      * @param {Number} postID 
      * @returns Updated like
@@ -38,7 +38,7 @@ const AllPosts = ({ posts, setPosts, status }) => {
     }
     return (
         <>
-            <section className="p-[60px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 ">
+            <section className="p-[28px] sm:p-[60px] flex justify-center flex-wrap sm:grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 ">
                 {posts && posts.map(post => (
                     <section key={post?.id} className="p-[40px] w-96 card-bordered card card-normal mt-4 bg-neutral-focus shadow-lg">
                         {status.loading ?
