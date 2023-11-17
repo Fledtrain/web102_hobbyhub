@@ -70,19 +70,21 @@ const Home = () => {
     return (
         <>
             <LandingPage />
-            <form className="hero mt-4">
-                <input
-                    type="text"
-                    className="input input-bordered"
-                    placeholder="Search Posts by Title"
-                    onChange={(e) =>
-                        setSearch(e.target.value)
-                    } />
+            <form className="mt-4">
+                <div className="hero">
+                    <input
+                        type="text"
+                        className="input input-bordered"
+                        placeholder="Search Posts by Title"
+                        onChange={(e) =>
+                            setSearch(e.target.value)
+                        } />
+                </div>
+                <div className="space-x-6 flex justify-center mt-2">
+                    <button className="btn text-[#DDDDDD]" onClick={(e) => handleFormSubmit(e)}>Search</button>
+                    <button className="btn text-[#DDDDDD]" onClick={() => getPosts()}>Reset</button>
+                </div>
             </form>
-            <div className="space-x-6 flex justify-center mt-2">
-                <button className="btn text-[#DDDDDD]" onClick={(e) => handleFormSubmit(e)}>Search</button>
-                <button className="btn text-[#DDDDDD]" onClick={() => getPosts()}>Reset</button>
-            </div>
             <div className="space-x-5 flex justify-center mt-3">
                 <button
                     className="btn text-[#DDDDDD]"
