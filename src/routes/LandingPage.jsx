@@ -14,7 +14,7 @@ const LandingPage = () => {
                         <span className="uppercase"> free!</span>
                     </h1>
                 </div>
-                <Link to="/create">
+                <Link to="/create" aria-current={false} >
                     <button className="hero text-2xl font-semibold">Click Here to make a new Post</button>
                 </Link>
                 <p className="hero text-2xl mt-2">Or Browse Below </p>

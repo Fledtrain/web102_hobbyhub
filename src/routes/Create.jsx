@@ -88,15 +88,15 @@ const Create = () => {
 
     return (
         <>
-            <section className="p-[90px] ">
-                <h2 className="text-3xl hero mb-4 text-white">Create New Post</h2>
+            <main className="p-[90px] ">
+                <h1 className="text-3xl hero mb-4 text-white">Create New Post</h1>
                 {status.error &&
                     <div className="flex justify-center">
                         <p className="alert alert-error mb-[20px] w-[35rem]">Please fill in all fields</p>
                     </div>
 
                 }
-                <form className="flex justify-center items-center form-control  ">
+                <form label="Create Post Form" className="flex justify-center items-center form-control  ">
                     <input
                         type="text"
                         placeholder="Enter Title"
@@ -153,7 +153,7 @@ const Create = () => {
                         </>
                     }
                 </form>
-            </section>
+            </main>
         </>
     )
 }

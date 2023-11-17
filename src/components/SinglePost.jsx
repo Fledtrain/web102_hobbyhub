@@ -20,7 +20,7 @@ const SinglePost = ({ post, status }) => {
                                     </div>
                                     :
                                     <>
-                                        <h2 className="hero text-4xl text-white ">{post?.title}</h2>
+                                        <h1 className="hero text-4xl text-white ">{post?.title}</h1>
                                         <div className="overflow-auto overflow-ellipsis text-left ">
                                             <p className="card text-2xl text-ellipsis">{post?.content}</p>
                                         </div>
