@@ -13,7 +13,7 @@ const Footer = () => {
                     <p className="font-bold">
                         Joey Whitehead (Fledtrain Inc.) <br />Providing reliable tech since 2023 😉
                     </p>
-                    <p className="text-white">Copyright © {year}- All right reserved by Joey Whitehead</p>
+                    <p className="text-white">Copyright © {year} - All right reserved by Joey Whitehead</p>
                 </div>
                 <nav>
                     <div className="grid grid-flow-col gap-4">
