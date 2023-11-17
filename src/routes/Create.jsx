@@ -100,17 +100,28 @@ const Create = () => {
                     <input
                         type="text"
                         placeholder="Enter Title"
-                        className="text-white input input-bordered mb-5 sm:w-[35rem]  "
+                        className="text-white input input-bordered mb-5 sm:w-[35rem] required:ring-2 required:ring-red-600 required:border-transparent  "
+                        required={form.title === "" && status.error ? true : false}
                         onChange={(e) => setForm(
                             { ...form, title: e.target.value }
-                        )} />
+                        )}
+                        aria-labelledby="Enter Title"
+                        aria-placeholder="Enter Title"
+                        aria-required="true"
+                    />
                     <div className="form-control">
                         <textarea
-                            className="textarea textarea-bordered  h-24 sm:w-[35rem] text-white"
+                            className="textarea textarea-bordered 
+                            h-24 sm:w-[35rem] text-white required:ring-2 required:ring-red-600 required:border-transparent
+                            "
+                            required={form.description === "" && status.error ? true : false}
                             placeholder="Enter Description"
                             onChange={(e) => setForm({
                                 ...form, description: e.target.value
                             })}
+                            aria-required="true"
+                            aria-labelledby="Enter Description"
+                            aria-placeholder="Enter Description"
                         ></textarea>
                         <label className="label">
                             <span className="label-text-alt"></span>
@@ -120,6 +131,8 @@ const Create = () => {
                     <input
                         type="text"
                         className="input input-bordered mb-5 sm:w-[35rem] text-white text-ellipsis"
+                        aria-labelledby="Enter Image URL | Optional"
+                        aria-placeholder="Enter Image URL | Optional"
                         placeholder="Enter Image URL | Optional"
                         onChange={(e) => setForm(
                             { ...form, image: e.target.value }
@@ -128,10 +141,15 @@ const Create = () => {
                         <input
                             type="number"
                             placeholder="Enter 4 digit passkey"
-                            className="input input-bordered sm:w-[35rem] text-white"
+                            className="input input-bordered sm:w-[35rem] text-white required:ring-2 required:ring-red-600 required:border-transparent"
+                            required={form.passKey === "" && status.error ? true : false}
                             onChange={(e) => setForm(
                                 { ...form, passKey: Number(e.target.value) }
-                            )} />
+                            )}
+                            aria-labelledby="Enter 4 digit passkey"
+                            aria-placeholder="1234"
+                            aria-required="true"
+                        />
                         <label className="label">
                             <span className="label-text-alt ">For Editing post later </span>
                         </label>
